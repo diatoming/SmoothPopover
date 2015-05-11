@@ -11,7 +11,7 @@ import AppKit
 @objc
 public class SmoothPopover : NSObject, NSWindowDelegate {
     
-    var window = SmoothPopoverWindow()
+    public var window = SmoothPopoverWindow()
     var contentView: NSView
     var frameView: SmoothFrameView
     
