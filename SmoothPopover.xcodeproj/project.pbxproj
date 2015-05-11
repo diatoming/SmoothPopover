@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3220BCC71AFCC7DC008B9BD6 /* SmoothPopoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220BCC61AFCC7DC008B9BD6 /* SmoothPopoverWindow.swift */; };
 		325FED5A1AFA245F00613713 /* SmoothPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = 325FED591AFA245F00613713 /* SmoothPopover.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		325FED711AFA24F700613713 /* SmoothFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325FED701AFA24F700613713 /* SmoothFrameView.swift */; };
 		325FED851AFA2EAA00613713 /* SmoothPathBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325FED841AFA2EAA00613713 /* SmoothPathBuilder.swift */; };
@@ -45,7 +44,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3220BCC61AFCC7DC008B9BD6 /* SmoothPopoverWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmoothPopoverWindow.swift; sourceTree = "<group>"; };
 		325FED541AFA245F00613713 /* SmoothPopover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmoothPopover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		325FED581AFA245F00613713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		325FED591AFA245F00613713 /* SmoothPopover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmoothPopover.h; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 				325FED701AFA24F700613713 /* SmoothFrameView.swift */,
 				325FED841AFA2EAA00613713 /* SmoothPathBuilder.swift */,
 				325FEDB81AFB483300613713 /* SmoothPopover.swift */,
-				3220BCC61AFCC7DC008B9BD6 /* SmoothPopoverWindow.swift */,
 				325FEDBA1AFB6AC100613713 /* SmoothPopoverStyle.swift */,
 				325FED591AFA245F00613713 /* SmoothPopover.h */,
 				325FED571AFA245F00613713 /* Supporting Files */,
@@ -253,7 +250,6 @@
 				325FEDBB1AFB6AC100613713 /* SmoothPopoverStyle.swift in Sources */,
 				325FEDB91AFB483300613713 /* SmoothPopover.swift in Sources */,
 				325FED851AFA2EAA00613713 /* SmoothPathBuilder.swift in Sources */,
-				3220BCC71AFCC7DC008B9BD6 /* SmoothPopoverWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

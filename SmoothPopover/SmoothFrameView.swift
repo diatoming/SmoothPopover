@@ -46,6 +46,13 @@ public class SmoothFrameView : NSView {
     
     public override func drawRect(dirtyRect: NSRect) {
         
+//        NSColor.yellowColor().setFill()
+//        NSRectFill(self.bounds)
+//
+//        var contentRect = NSInsetRect(self.bounds, 5, 5)
+//        NSColor.redColor().setFill()
+//        NSRectFill(contentRect)
+
         NSGraphicsContext.saveGraphicsState()
         
         let contentPath = self.contentPath()
@@ -63,6 +70,7 @@ public class SmoothFrameView : NSView {
         contentPath.lineWidth = self.style.strokeWidth
         self.style.strokeColor.setStroke()
         contentPath.stroke()
+        
 
     }
     

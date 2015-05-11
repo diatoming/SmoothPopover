@@ -8,6 +8,7 @@
 
 import AppKit
 
+@objc
 public class SmoothPopover : NSObject, NSWindowDelegate {
     
     var window = SmoothPopoverWindow()
@@ -19,12 +20,23 @@ public class SmoothPopover : NSObject, NSWindowDelegate {
         self.frameView = SmoothFrameView()
         super.init()
         
+        let popoverSize = self.frameView.frameSizeForContentSize(self.contentView.bounds.size)
+        self.window.setFrame(NSRect(origin: NSPoint(), size: popoverSize), display: false) // if not set frame, it will be zero from the start, and will shifted somehow incorrectly
         self.frameView.addSubview(self.contentView)
         self.window.contentView = self.frameView
         self.window.delegate = self
     }
     
-    public func showRelativeToView (positioningView: NSView, var positioningRect: NSRect, edge: NSRectEdge) {
+    public var shown: Bool {
+        return self.window.visible
+    }
+    
+    public func close() {
+        self.window.close()
+    }
+    
+    @objc
+    public func showRelativeToView (positioningView: NSView, positioningRect: NSRect, edge: NSRectEdge) {
         
         let screenPositioningRect = positioningView.screenRectForRect(positioningRect)
         
@@ -33,7 +45,6 @@ public class SmoothPopover : NSObject, NSWindowDelegate {
         
         let shadowOffset = self.frameView.style.shadowBlurRadius
         var popoverFrame: NSRect
-        
         
         switch edge {
             
@@ -117,7 +128,6 @@ public class SmoothPopoverWindow: NSWindow {
         get {return true}
     }
     
-
 }
 
 
