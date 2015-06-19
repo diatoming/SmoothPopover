@@ -16,7 +16,7 @@ public class SmoothFrameView : NSView {
         }
     }
     
-    public var arrowEdge: NSRectEdge = 0 {
+    public var arrowEdge: NSRectEdge = .MinY {
         didSet {
             self.needsDisplay = true
         }
@@ -76,7 +76,7 @@ public class SmoothFrameView : NSView {
     
     public func frameSizeForContentSize (contentSize: NSSize) -> NSSize {
         var viewSize = NSSize(width: contentSize.width + style.shadowBlurRadius*2, height: contentSize.height + style.shadowBlurRadius*2)
-        if (arrowEdge == NSMinXEdge || arrowEdge == NSMaxXEdge) {
+        if (arrowEdge == NSRectEdge.MinX || arrowEdge == NSRectEdge.MaxX) {
             viewSize.width += style.arrowLength
         } else {
             viewSize.height += style.arrowLength
@@ -88,18 +88,16 @@ public class SmoothFrameView : NSView {
         var contentFrame = NSInsetRect(self.bounds, self.style.shadowBlurRadius, self.style.shadowBlurRadius)
         
         switch self.arrowEdge {
-        case NSMaxYEdge:
+        case NSRectEdge.MaxY:
             contentFrame.size.height -= self.style.arrowLength
-        case NSMaxXEdge:
+        case NSRectEdge.MaxX:
             contentFrame.size.width -= self.style.arrowLength
-        case NSMinYEdge:
+        case NSRectEdge.MinY:
             contentFrame.size.height -= self.style.arrowLength
             contentFrame.origin.y += self.style.arrowLength
-        case NSMinXEdge:
+        case NSRectEdge.MinX:
             contentFrame.size.width -= self.style.arrowLength
             contentFrame.origin.x += self.style.arrowLength
-        default:
-            println("Invalid edge")
         }
         return contentFrame
     }
@@ -107,7 +105,7 @@ public class SmoothFrameView : NSView {
     private func contentPath() -> NSBezierPath {
         var contentRect = NSInsetRect(self.bounds, self.style.shadowBlurRadius, self.style.shadowBlurRadius)
         
-        if (self.arrowEdge == NSMinXEdge || self.arrowEdge == NSMaxXEdge) {
+        if (self.arrowEdge == NSRectEdge.MinX || self.arrowEdge == NSRectEdge.MaxX) {
             contentRect.size = NSSize(width: contentRect.height, height: contentRect.width)
         }
         
@@ -122,16 +120,14 @@ public class SmoothFrameView : NSView {
         let path = pathBuilder.build()
         
         switch self.arrowEdge {
-        case NSMaxYEdge:
+        case NSRectEdge.MaxY:
             path
-        case NSMaxXEdge:
+        case NSRectEdge.MaxX:
             path.rotateAroundCenterByDegrees(270)
-        case NSMinYEdge:
+        case NSRectEdge.MinY:
             path.rotateAroundCenterByDegrees(180)
-        case NSMinXEdge:
+        case NSRectEdge.MinX:
             path.rotateAroundCenterByDegrees(90)
-        default:
-            println("Invalid edge")
         }
         
         return path

@@ -48,28 +48,25 @@ public class SmoothPopover : NSObject, NSWindowDelegate {
         
         switch edge {
             
-        case NSMinYEdge:
+        case NSRectEdge.MinY:
             let positioningBottomMid = NSPoint(x: NSMidX(screenPositioningRect), y: NSMinY(screenPositioningRect))
             let popoverOrigin = NSPoint(x: positioningBottomMid.x - popoverSize.width/2, y: positioningBottomMid.y - popoverSize.height + shadowOffset)
             popoverFrame = NSRect(origin: popoverOrigin, size: popoverSize)
             
-        case NSMaxYEdge:
+        case NSRectEdge.MaxY:
             let positioningTopMid = NSPoint(x: NSMidX(screenPositioningRect), y: NSMaxY(screenPositioningRect))
             let popoverOrigin = NSPoint(x: positioningTopMid.x - popoverSize.width/2, y: positioningTopMid.y - shadowOffset)
             popoverFrame = NSRect(origin: popoverOrigin, size: popoverSize)
 
-        case NSMinXEdge:
+        case NSRectEdge.MinX:
             let positioningLeftMid = NSPoint(x: NSMinX(screenPositioningRect), y: NSMidY(screenPositioningRect))
             let popoverOrigin = NSPoint(x: positioningLeftMid.x - popoverSize.width + shadowOffset, y: positioningLeftMid.y - popoverSize.height/2)
             popoverFrame = NSRect(origin: popoverOrigin, size: popoverSize)
 
-        case NSMaxXEdge:
+        case NSRectEdge.MaxX:
             let positioningRightMid = NSPoint(x: NSMaxX(screenPositioningRect), y: NSMidY(screenPositioningRect))
             let popoverOrigin = NSPoint(x: positioningRightMid.x - shadowOffset, y: positioningRightMid.y - popoverSize.height/2)
             popoverFrame = NSRect(origin: popoverOrigin, size: popoverSize)
-            
-        default:
-            popoverFrame = NSZeroRect
         }
         
         self.contentView.setFrameOrigin(self.frameView.contentFrameForCurrentFrameSize().origin)
@@ -79,16 +76,14 @@ public class SmoothPopover : NSObject, NSWindowDelegate {
     
     private func arrowEdgeForPopoverEdge (popoverEdge: NSRectEdge) -> NSRectEdge {
         switch popoverEdge {
-        case NSMinXEdge:
-            return NSMaxXEdge
-        case NSMaxXEdge:
-            return NSMinXEdge
-        case NSMinYEdge:
-            return NSMaxYEdge
-        case NSMaxYEdge:
-            return NSMinYEdge
-        default:
-            return popoverEdge
+        case NSRectEdge.MinX:
+            return NSRectEdge.MaxX
+        case NSRectEdge.MaxX:
+            return NSRectEdge.MinX
+        case NSRectEdge.MinY:
+            return NSRectEdge.MaxY
+        case NSRectEdge.MaxY:
+            return NSRectEdge.MinY
         }
     }
     
@@ -105,7 +100,7 @@ public class SmoothPopover : NSObject, NSWindowDelegate {
 public class SmoothPopoverWindow: NSWindow {
     
     public init() {
-        super.init(contentRect: NSZeroRect, styleMask: NSBorderlessWindowMask, backing: .Buffered, defer: false)
+        super.init(contentRect: NSZeroRect, styleMask: NSBorderlessWindowMask, backing: .Buffered, `defer`: false)
         
         self.movableByWindowBackground = false;
         self.alphaValue = 1

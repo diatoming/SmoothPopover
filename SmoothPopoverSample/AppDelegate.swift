@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func showPopoverButtonClicked(sender: NSButton) {
-        self.popover.showRelativeToView(sender, positioningRect: NSZeroRect, edge: NSMaxXEdge)
+        self.popover.showRelativeToView(sender, positioningRect: NSZeroRect, edge: NSRectEdge.MaxX)
     }
 }
 
